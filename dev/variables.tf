@@ -1,13 +1,18 @@
+variable "provider_tenancy_ocid" {}
+variable "provider_user_ocid" {}
+variable "provider_fingerprint" {}
+variable "provider_private_key_path" {}
+variable "provider_region" {}
+
 variable "config" {
   type = object({
     project_prefix = string,
 
     compartment = object({
-      provider_tenancy_ocid          = string,
-      create_compartment_name        = string,
+      provider_tenancy_ocid          = string
+      create_compartment_name        = string
       create_compartment_description = string
     })
-
     vcn = object({
       cidr_block = string,
       dns_label  = string,
@@ -28,7 +33,6 @@ variable "config" {
         ingress_security_rules = list(object({ source = string, source_type = string, protocol = string, stateless = string, port = string }))
       }))
     })
-
     computes = map(object({
       display_name        = string,
       availability_domain = string,
@@ -53,21 +57,21 @@ variable "config" {
     }))
 
     autonomous_databases = map(object({
-      admin_password                                 = string,
-      cpu_core_count                                 = number,
-      data_storage_size_in_tbs                       = number,
-      db_name                                        = string,
-      db_version                                     = string,
-      db_workload                                    = string,
-      display_name                                   = string,
-      is_auto_scaling_enabled                        = bool,
-      is_preview_version_with_service_terms_accepted = bool,
-      license_model                                  = string,
-      nsg                                            = string,
-      private_endpoint_label                         = string,
+      admin_password                                 = string
+      cpu_core_count                                 = number
+      data_storage_size_in_tbs                       = number
+      db_name                                        = string
+      db_version                                     = string
+      db_workload                                    = string
+      display_name                                   = string
+      is_auto_scaling_enabled                        = bool
+      is_preview_version_with_service_terms_accepted = bool
+      license_model                                  = string
+      nsg                                            = string
+      private_endpoint_label                         = string
       subnet                                         = string
     }))
-
+    
     bastions = map(object({
       bastion_name                 = string,
       bastion_type                 = string,
